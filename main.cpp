@@ -1,6 +1,7 @@
 #include "ll1.h"
 #include "utils.h"
 #include <iostream>
+#include <fstream>
 
 int main()
 {
@@ -22,5 +23,11 @@ int main()
     }
     ll1.print_table();
 
-    std::cout << ll1.check("a*a#") << "\n";
+    std::ifstream words_file("words.txt");
+    std::string line;
+
+    while (std::getline(words_file, line))
+    {
+        std::cout << ll1.check(line) << "\n";
+    }
 }

@@ -34,14 +34,15 @@ void LL1::read_grammar(std::string input_file)
 
 void LL1::print_rules()
 {
+    int cnt = 0;
     std::cout << "rules:\n";
-    for (auto it = rules.begin(); it != rules.end(); ++it)
+    for (auto &p : rules)
     {
-        std::cout << it->first << ": ";
-        for (std::string s : it->second)
+        std::cout << p.first << ": ";
+        for (std::string s : p.second)
         {
-
-            std::cout << s << " ";
+            cnt++;
+            std::cout << cnt << "->" << s << " ";
         }
         std::cout << "\n";
     }
@@ -50,9 +51,9 @@ void LL1::print_rules()
 void LL1::print_alphabet()
 {
     std::cout << "alphabet:\n";
-    for (auto it = alphabet.begin(); it != alphabet.end(); ++it)
+    for (char c : alphabet)
     {
-        std::cout << *(it) << " ";
+        std::cout << c << " ";
     }
     std::cout << "\n";
 }
@@ -60,10 +61,10 @@ void LL1::print_alphabet()
 void LL1::print_first()
 {
     std::cout << "first:\n";
-    for (auto it = first.begin(); it != first.end(); ++it)
+    for (auto &p : first)
     {
-        std::cout << it->first << ": ";
-        for (char c : it->second)
+        std::cout << p.first << ": ";
+        for (char c : p.second)
         {
 
             std::cout << c << " ";
@@ -75,10 +76,10 @@ void LL1::print_first()
 void LL1::print_follow()
 {
     std::cout << "follow:\n";
-    for (auto it = follow.begin(); it != follow.end(); ++it)
+    for (auto &p : follow)
     {
-        std::cout << it->first << ": ";
-        for (char c : it->second)
+        std::cout << p.first << ": ";
+        for (char c : p.second)
         {
 
             std::cout << c << " ";

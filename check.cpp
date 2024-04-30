@@ -21,7 +21,7 @@ std::string LL1::check(const std::string &s)
         {
             if (table[symbol_stack.back()][input_stack.back()].first == "error")
             {
-                return "";
+                return "error";
             }
             char top = symbol_stack.back();
             symbol_stack.pop_back();
@@ -40,7 +40,7 @@ std::string LL1::check(const std::string &s)
 
         if (symbol_stack.back() != input_stack.back())
         {
-            return "";
+            return "error";
         }
 
         symbol_stack.pop_back();
