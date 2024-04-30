@@ -21,4 +21,6 @@ int main()
         return 0;
     }
     ll1.print_table();
+
+    std::cout << ll1.check("a*a#") << "\n";
 }
