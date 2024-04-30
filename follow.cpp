@@ -9,9 +9,9 @@ void LL1::compute_follow()
     while (has_changed)
     {
         has_changed = false;
-        for (std::unordered_map<char, std::vector<std::string>>::iterator it = rules.begin(); it != rules.end(); ++it)
+        for (const std::pair<char, std::vector<std::string>> &rule : rules)
         {
-            for (std::string production : it->second)
+            for (const std::string &production : rule.second)
             {
                 for (size_t i = 0; i < production.length(); i++)
                 {
@@ -19,7 +19,7 @@ void LL1::compute_follow()
                     {
                         if (i == production.length() - 1)
                         {
-                            if (insert_different(follow[production[i]], follow[it->first]))
+                            if (insert_different(follow[production[i]], follow[rule.first]))
                             {
                                 has_changed = 1;
                             }
@@ -31,7 +31,7 @@ void LL1::compute_follow()
                             {
                                 has_changed = 1;
                             }
-                            if (computed_first.find('_') != computed_first.end() && insert_different(follow[production[i]], follow[it->first]))
+                            if (computed_first.find('_') != computed_first.end() && insert_different(follow[production[i]], follow[rule.first]))
                             {
                                 has_changed = 1;
                             }

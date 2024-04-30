@@ -14,4 +14,11 @@ int main()
 
     ll1.compute_follow();
     ll1.print_follow();
+
+    if (!ll1.compute_table())
+    {
+        std::cout << "Grammar is not LL\n";
+        return 0;
+    }
+    ll1.print_table();
 }

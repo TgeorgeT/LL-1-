@@ -13,16 +13,16 @@ void LL1::compute_first()
     while (has_changed)
     {
         has_changed = false;
-        for (std::unordered_map<char, std::vector<std::string>>::iterator it = rules.begin(); it != rules.end(); ++it)
+        for (const std::pair<char, std::vector<std::string>> &rule : rules)
         {
-            for (std::string production : it->second)
+            for (const std::string &production : rule.second)
             {
                 if (!('A' <= production[0] && production[0] <= 'Z'))
                 {
-                    if (first[it->first].find(production[0]) == first[it->first].end())
+                    if (first[rule.first].find(production[0]) == first[rule.first].end())
                     {
                         has_changed = true;
-                        first[it->first].insert(production[0]);
+                        first[rule.first].insert(production[0]);
                     }
                 }
                 else
@@ -30,7 +30,7 @@ void LL1::compute_first()
                     size_t i = 0;
                     for (i = 0; i < production.size(); ++i)
                     {
-                        if (insert_different_and_not_lambda(first[it->first], first[production[i]]))
+                        if (insert_different_and_not_lambda(first[rule.first], first[production[i]]))
                         {
                             has_changed = true;
                         }
@@ -39,10 +39,10 @@ void LL1::compute_first()
                             break;
                         }
                     }
-                    if (i == production.size() && first[it->first].find('_') == first[it->first].end())
+                    if (i == production.size() && first[rule.first].find('_') == first[rule.first].end())
                     {
                         has_changed = true;
-                        first[it->first].insert('_');
+                        first[rule.first].insert('_');
                     }
                 }
             }

@@ -87,4 +87,18 @@ void LL1::print_follow()
     }
 }
 
+void LL1::print_table()
+{
+    std::cout << "table:\n";
+    for (auto p1 : table)
+    {
+        std::cout << p1.first << ": ";
+        for (auto p2 : p1.second)
+        {
+            std::cout << p2.first << "->" << p2.second.first << ", " << p2.second.second << "| ";
+        }
+        std::cout << "\n";
+    }
+}
+
 #endif
